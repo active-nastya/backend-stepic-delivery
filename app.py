@@ -28,6 +28,27 @@ promocodes = [
 
 ]
 
+meals = [{
+ "title": "Chinken",
+ "id": 1,
+ "available": True,
+ "picture": "",
+ "price": 20.0,
+ "category": 1
+}, {
+ "title": "Milk",
+ "id": 2,
+ "available": True,
+ "picture": "",
+ "price": 10.0,
+ "category": 1
+}]
+
+
+
+
+
+
 
 
 @app.route("/")
@@ -60,7 +81,9 @@ def promo(code):
     return json.dumps({"valid": False})
 
 
-
+@app.route("/meals")
+def meals_route():
+    return json.dumps(meals)
 
 
 app.run("0.0.0.0", 8000)
