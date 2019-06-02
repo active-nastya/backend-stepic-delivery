@@ -1,11 +1,13 @@
 from flask import Flask
 import random
+import json
 app = Flask(__name__)
 
 stepik_alive = True
 workhours_open = "10:00"
 workhours_closes = "21:00"
 promotion_text = "Сегодня скидка 15 % по промокоду stepik!"
+promocodes = []
 
 
 promotions = [
@@ -15,6 +17,17 @@ promotions = [
 
 
 ]
+
+promocodes = [
+    {"code": "stepik", "discount":15},
+    {"code": "summer", "discount":10},
+    {"code": "pleaseplease", "discount":5},
+    {"code":"doubletrouble", "discount": 50},
+    {"code":"illbeback", "discount":25}
+
+
+]
+
 
 
 @app.route("/")
@@ -40,14 +53,13 @@ def promotion():
 
 
 @app.route("/promo/<code>")
-def checkpromo(code):
-    if code == "stepik":
-        return '{"valid":true, "discount":15}'
-    elif code == "summer":
-        return '{"valid":true, "discount": 10}'
-    elif code == "pleaseplease":
-        return '{"valid":true, "discount": 5}'
-    return '{valid:false, "discount": 0}'
+def promo(code):
+    for promocode in promocodes:
+        if promocode["code"] == code:
+            return json.dumps({"valid": True, "discount":promocode["discount"]})
+    return json.dumps({"valid": False})
+
+
 
 
 
