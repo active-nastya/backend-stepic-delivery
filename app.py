@@ -61,11 +61,15 @@ def alive():
     config_content = config_file.read()
     data = json.loads(config_content)
     config_file.close()
-    return json.dumps(data)
+    return json.dumps({"alive": data['alive']})
 
 @app.route("/workhours")
 def workhours():
-    return '{openes: " '+ workhours_open +' "", closes: " ' + workhours_closes + ' "}'
+    config_file = open("config.json", "r")
+    config_content = config_file.read()
+    data = json.loads(config_content)
+    config_file.close()
+    return json.dumps(data["workhours"])
 
 
 @app.route("/promotion")
