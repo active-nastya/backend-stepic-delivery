@@ -1,0 +1,15 @@
+[{
+ "title": "Chiсken",
+ "id": 1,
+ "available": true,
+ "picture": "",
+ "price": 20.0,
+ "category": 1
+}, {
+ "title": "Milk",
+ "id": 2,
+ "available": true,
+ "picture": "",
+ "price": 10.0,
+ "category": 1
+}]
